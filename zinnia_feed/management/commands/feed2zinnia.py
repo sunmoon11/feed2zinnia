@@ -3,6 +3,7 @@ import os
 import sys
 from datetime import datetime
 from optparse import make_option
+from unidecode import unidecode
 try:
     from urllib.request import urlopen
 except ImportError:  # Python 2
@@ -112,7 +113,7 @@ class Command(LabelCommand):
                         creation_date, timezone.utc)
             else:
                 creation_date = timezone.now()
-            slug = slugify(feed_entry.title)[:255]
+            slug = slugify(unidecode(feed_entry.title))[:255]
 
             if Entry.objects.filter(creation_date__year=creation_date.year,
                                     creation_date__month=creation_date.month,
