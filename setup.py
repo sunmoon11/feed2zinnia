@@ -32,5 +32,8 @@ setup(
     license=zinnia_feed.__license__,
     include_package_data=True,
     zip_safe=False,
-    install_requires=['feedparser>=5.1.3']
+    install_requires=[
+        'feedparser>=5.1.3',
+        'unidecode>=1.0.22'
+    ]
 )
