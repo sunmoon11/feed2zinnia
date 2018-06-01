@@ -39,18 +39,20 @@ class Command(LabelCommand):
     label = 'feed url'
     args = 'url'
 
-    option_list = LabelCommand.option_list + (
-        make_option('--no-auto-excerpt', action='store_false',
+    def add_arguments(self, parser):
+        super().add_arguments(parser)
+        parser.add_argument('--no-auto-excerpt', action='store_false',
                     dest='auto-excerpt', default=True,
-                    help='Do NOT generate an excerpt if not present.'),
-        make_option('--no-enclosure', action='store_false',
+                    help='Do NOT generate an excerpt if not present.')
+        parser.add_argument('--no-enclosure', action='store_false',
                     dest='image-enclosure', default=True,
-                    help='Do NOT save image enclosure if present.'),
-        make_option('--no-tags', action='store_false',
+                    help='Do NOT save image enclosure if present.')
+        parser.add_argument('--no-tags', action='store_false',
                     dest='tags', default=True,
-                    help='Do NOT store categories as tags'),
-        make_option('--author', dest='author', default='',
-                    help='All imported entries belong to specified author'))
+                    help='Do NOT store categories as tags')
+        parser.add_argument('--author', dest='author', default='',
+                    help='All imported entries belong to specified author')        
+
     SITE = Site.objects.get_current()
 
     def __init__(self):
